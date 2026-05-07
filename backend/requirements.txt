@@ -3,3 +3,4 @@ flask-jwt-extended # Extension for Flask that adds support for JSON Web Tokens (
 psycopg2-binary # PostgreSQL database adapter for Python.
 python-dotenv # Load environment variables from a .env file.
 anthropic # Anthropic API client.
+bcrypt # A library for hashing passwords.
