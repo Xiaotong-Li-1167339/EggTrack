@@ -1,0 +1,5 @@
+flask # A micro web framework for Python.
+flask-jwt-extended # Extension for Flask that adds support for JSON Web Tokens (JWT).
+psycopg2-binary # PostgreSQL database adapter for Python.
+python-dotenv # Load environment variables from a .env file.
+anthropic # Anthropic API client.
