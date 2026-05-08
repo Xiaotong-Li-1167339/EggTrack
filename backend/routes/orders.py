@@ -1,13 +1,14 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from models import get_db_connection
+import json
 
 orders_bp = Blueprint('orders', __name__)
 
 @orders_bp.route('/create', methods=['POST'])
 @jwt_required()
 def create_order():
-    current_user = get_jwt_identity()
+    current_user = json.loads(get_jwt_identity())
     if current_user['role'] != 'buyer':
         return jsonify({'error': 'Only buyers can place orders'}), 403
 

@@ -1,13 +1,14 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from models import get_db_connection
+import json
 
 eggs_bp = Blueprint('eggs', __name__)
 
 @eggs_bp.route('/record', methods=['POST'])
 @jwt_required()
 def record_eggs():
-    current_user = get_jwt_identity()
+    current_user = json.loads(get_jwt_identity())
     if current_user['role'] not in ['admin', 'operator']:
         return jsonify({'error': 'Unauthorized'}), 403
 

@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from models import get_db_connection
 import bcrypt
+import json
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -44,6 +45,6 @@ def login():
     conn.close()
 
     if user and bcrypt.checkpw(password.encode('utf-8'), user[1].encode('utf-8')):
-        access_token = create_access_token(identity={'id': user[0], 'role': user[2]})
+        access_token = create_access_token(identity=json.dumps({'id': user[0], 'role': user[2]}))
         return jsonify({'access_token': access_token, 'role': user[2]}), 200
     return jsonify({'error': 'Invalid credentials'}), 401
